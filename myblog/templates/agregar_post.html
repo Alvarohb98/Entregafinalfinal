@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block titulo %}
+Crear un nuevo artículo
+{% endblock %}
+{% block contenido_cambia %}
+{% if user.is_authenticated %}
+    <h1>Agregar artículo</h1>
+
+    <br><br/>
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-secondary">Postear</button>
+    </div>
+    <script>
+        var name = "{{ user.id }}";
+        document.getElementById("usuario").value = name;
+
+    </script>
+{% else %}
+    Usted debe loguearse para crear un artículo
+{% endif %}
+{% endblock %}

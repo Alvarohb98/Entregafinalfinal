@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block contenido_cambia %}
+
+{% if categorias_post %}
+
+<h1>{{ cat }}</h1>
+<ul>
+{% for post in categorias_post %}
+
+    <li><a href="{% url 'articulodetalle' post.pk %}"> {{ post.titulo }} <a/> - {{ post.categorias }} - {{ post.autor }} - {{ post.fechapost }}
+        {% if user.is_authenticated %}
+        - <a href="{% url 'editar_post' post.pk %}">Editar</a> |
+        <a href="{% url 'eliminar_post' post.pk %}">Eliminar</a>
+        {% endif %}
+        <br/>
+    {{ post.cuerpo | slice:"100" | safe }}</li>
+{% endfor %}
+</ul>
+{% else %}
+    <h3>Disculpe, esta página aún no esta disponible</h3>
+{% endif %}
+{% endblock %}

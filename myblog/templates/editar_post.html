@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block titulo %}
+Editar
+{% endblock %}
+{% block contenido_cambia %}
+{% if user.is_authenticated %}
+    {% if user.id == post.autor.id %}
+            <h1>Editar un artículo</h1>
+            <br><br/>
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-secondary">Editar</button>
+    </div>
+    {% else %}
+    <h3>Usted debe estar registrado para poder hacer cambios.</h3>
+    {% endif %}
+{% endif %}
+{% endblock %}

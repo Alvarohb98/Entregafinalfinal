@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block titulo %}
+Elimimar
+{% endblock %}
+{% block contenido_cambia %}
+{% if user.is_authenticated %}
+    {% if user.id == post.autor.id %}
+        <h1>Eliminar un artículo</h1>
+
+        <br><br/>
+        <h3>Eliminar: {{post.titulo }}</h3>
+        <div class="form-group">
+            <form method="POST">
+                {% csrf_token %}
+                <strong>¿Estas seguro de querer eliminar este artículo?</strong><br/><br/>
+        <button class="btn btn-secondary">Eliminar</button>
+        </div>
+        {% else %}
+         para cambiar el contenido.
+    {% endif %}
+{% else %}
+<h3>Usted debe estar registrado para editar el contenido.</h3>
+{% endif %}
+{% endblock %}
