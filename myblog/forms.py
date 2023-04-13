@@ -2,7 +2,6 @@ from django import forms
 from .models import Post, Categorias
 
 
-#elegir = [('EEUU', 'EEUU'), ('Argentina', 'Argentina'), ('España', 'España')]
 elegir = Categorias.objects.all().values_list('name', 'name')
 elegir_lista = []
 
